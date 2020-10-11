@@ -1,0 +1,112 @@
+@(username: String, lastSeen: String)(implicit request: RequestHeader, flash: Flash)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome | Lead page</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/lead.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/hska.png")">
+        <script src="@routes.Assets.versioned("javascripts/lead.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        <header>
+            <div class = "header-first-div" >
+                <div class = "dark-div" ></div>
+                <div class = "school-title-parent-div" >
+                    <div class = "inner-school-title-div" >Hochschule Karlsruhe</div>
+                    <div class = "inner-school-title-div-2" >Technik und </div>
+                    <div class = "inner-school-title-div-3" >Wirtschaft</div>
+                </div>
+                <div class = "school-title-parent-div-2" >
+                    <div class = "inner-school-title-div" >Welcome!</div>
+                    <div class = "inner-school-title-div-2" >Please scroll down for the </div>
+                    <div class = "inner-school-title-div-3" >Secretary users</div>
+                </div>
+
+            </div>
+            <div class = "main-parent-lower-div" >
+                <div class = "inner-main-parent-lower-div" >
+                    <div class = "contact-us-inner-div" >
+                        <div class = "logo-parent-div" >
+                            <img src="@routes.Assets.versioned("images/hskaa.png")" alt="err" class = "hska-logo-img" >
+                        </div>
+                        <div class = "outer-div-e-mail-us" >
+                            <textarea class="e-mail-us-area" placeholder="Email us directly"></textarea>
+                        </div>
+                        <div class = "send-e-mail-button-div" >
+                            Send
+                        </div>
+                    </div>
+                    <div class = "inner-main-parent-grid-div" >
+                        <div>
+                            <div class = "inner-quote-one-div" >
+                                <img src="@routes.Assets.versioned("images/web21.png")" alt="err" class = "img-quote">
+                                Every beginner possesses a great potential to be an expert in his or her chosen field.
+                                <div  class = "author-quote">
+                                    Lailah Gifty Akita
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class = "inner-quote-one-div" >
+                                <img src="@routes.Assets.versioned("images/web21.png")" alt="err" class = "img-quote">
+                                Do not give them a candle to light the way, teach them how to make fire instead.
+                                That is the meaning of enlightenment.
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class = "inner-quote-one-div" >
+                                <img src="@routes.Assets.versioned("images/web21.png")" alt="err" class = "img-quote">
+                                Make a life out of learning rather than waiting for a life after learning -
+                                <div  class = "author-quote"> Dalia El-Farawi</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class = "inner-quote-one-div" >
+                                <img src="@routes.Assets.versioned("images/web21.png")" alt="err" class = "img-quote">
+                                We are what our great Mentors have taught us. -
+                                <div  class = "author-quote">
+                                    Lailah Gifty Akita
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section>
+            <div class = "section-first-div" >
+                <div class = "section-inner-div-1" >
+                </div>
+                <div class = "section-inner-div-2" >
+                    <div >
+                        <div class = "sec-page-title-div" >Secretary users</div>
+                        Welcome to this page. Every student can access
+                        the secretary page by clicking on the button below.
+                        If your name is not there, please contact the management. Thank you.
+                    </div>
+                    <div class = "sec-page-button-div" id="sec-page-button-div" >
+                        Visit secretary page
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="custom-shape-divider-bottom-1599254417">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </footer>
+
+        <input type="hidden" id="secretary" value="@routes.UsersController.secretary()">
+        @scalajs.html.scripts("Project-B-client", routes.Assets.versioned(_).toString,
+            name => getClass.getResource(s"/public/$name") != null)
+    </body>
+</html>

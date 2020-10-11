@@ -1,0 +1,15 @@
+@(userForm: Form[StudentData])(implicit request: RequestHeader, messages: Messages, flash: Flash)
+
+
+@helper.form(action = routes.UsersController.createUser) {
+    @helper.CSRF.formField
+    @helper.inputText(userForm("username"))
+    @helper.inputText(userForm("email"))
+    <input type="submit" value="Submit">
+}
+
+@flash.get("timeout")
+@flash.get("duplicate")
+@flash.get("error")
+@flash.get("username")
+

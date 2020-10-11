@@ -1,0 +1,183 @@
+.logofield {
+	position: relative;
+	top: 0px;
+	overflow: initial;
+	margin-left: auto;
+	margin-right: auto;
+	height: 170px;
+	width: 1000px;
+	background-color: #ffffff;
+}
+
+.h1 {
+	position: absolute;
+	top: 45px;
+	left: 350px;
+	color: red;
+}
+.logo {
+	position: relative;
+	left: 25px;
+	top: 20px;
+	height: 90px;
+	width: 240px;
+}
+.head {
+	border: 0px solid black;
+	position: relative;
+	background-image: url('headbeckgroundpic.jpg');
+	background-repeat: repeat-x;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	text-decoration: #fffFFF;
+	top:60px;
+	width: 985px;
+	height: 40px;
+	text-align: bottom;
+	vertical-align: bottom;
+	line-height: 50px;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-bottom: 0px;
+}
+.hauptField { 
+	border:1px;
+	position: relative;
+	top:70px;
+	overflow: hidden;
+	margin-left: auto;
+	margin-right: auto;
+	bottom: 5px;
+	
+}
+.bewtable{
+	display:table; 
+	top: 2px;
+	bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color:  #f1f1c1;
+	border-collapse: collapse;
+	padding:8px;
+}
+.bewtable>*{
+	display:table-row;
+  	width:auto;
+  	clear:both;
+  	padding: 8px;
+}
+.bewtable>*>*{
+	 float:left;/*fix for  buggy browsers*/
+ 	 display:table-column;         
+  	 width:150px;
+ 	 background-color: #f1f1c1;
+ 	 padding: 3px;    
+ 	  
+}
+.bemlang{
+	display:table-column; 
+	width:150px;
+	background-color: #f1f1c1;
+}
+.nation{
+	display:table-column; 
+	width:90px;
+	background-color: #f1f1c1;	
+}
+.edit{display:table-column; 
+	width:100px;
+	background-color:  #f1f1c1;
+	}
+#zulassung{
+	display:table-column; 
+	width:40px;
+	background-color:  #f1f1c1;
+}
+.sitzNo{
+	display:table-column; 
+	width:40px;
+	background-color:  #f1f1c1;
+}
+.isChecked{
+	display:table-column; 
+	width:40px;
+	background-color:  #f1f1c1;
+}
+#dateZulSent{
+	display:table-column; 
+	width:70px;
+	background-color: #f1f1c1;
+}
+.saveButton{
+	display:table-column; 
+	width:50px;
+	background-color: #f1f1c1;
+	
+}
+.docs{
+	display:table-column; 
+	width:120px;
+	background-color: #f1f1c1;	
+}
+.Docs_View{
+	width:120px;
+	
+}
+.submitB{
+	background-color:  #CCCC66;
+}
+.div0{
+	position: relative;
+	top:41px;
+	left :0px;
+	width :900px;
+	height:40px;
+	
+}
+.register_new_student{
+	position: absolute;
+	top:0px;
+	left :550px;
+	border-radius: 5px;
+	padding: 5px;
+	background-color:   #CCCC66;
+}
+.show_all{
+	position: absolute;
+	top:0px;
+	left :450px;
+	border-radius: 5px;
+	padding: 5px;
+	background-color:   #CCCC66;
+}
+.logout{
+	position: absolute;
+	top:0px;
+	left :750px;
+	border-radius: 5px;
+	padding: 5px;
+	background-color:   #CCCC66;
+}
+
+.footer {
+	display: inline-block;
+	position: fixed; /* absolute; or position:fixed for scrolling */;
+	bottom: 0px;
+	background-image: url('footimg.jpg');
+	background-repeat: repeat-x;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: #FfffFF;
+	overflow: hidden;
+	clear: both;
+	text-align: left;
+	padding-left: 15px;
+	padding-bottom: 2px;
+	vertical-align: bottom;
+	font-size: 13px;
+	font-weight: bold;
+	color: #ffffff;
+	height: 20px;
+	
+}

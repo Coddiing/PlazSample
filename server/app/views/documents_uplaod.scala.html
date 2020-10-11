@@ -1,0 +1,221 @@
+@( userName: String, lastLog: String )(implicit request: RequestHeader, flash: Flash)
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="STZ SensIn'">
+        <meta name="copyright" content="STZ SensIn'">
+        <meta name="email" content="leizesensin.eu">
+        <title> International Master Application HSKA</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <script src="StmFunction.js" type="text/javascript"></script>
+        <link href="@routes.Assets.versioned("stylesheets/OnlineAppStyle.css")"
+        rel="stylesheet" type="text/css">
+
+        <script src="jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <script src="dhtmlxcalendar.js" type="text/javascript"></script>
+        <link href="dhtmlxcalendar.css" rel="stylesheet" type="text/css">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
+    </head>
+
+
+
+    <body>
+
+
+
+        <div class="logofield">
+
+            <img class="logo" src= "hska_logo_RGB_small.jpg" alt= "logo hska" >
+            <h3 class="h1">  International Master Application </h3>
+
+
+        </div>
+
+        <div class="head" border="0">
+
+            <div class="headerline1">
+
+                <a STYLE="text-decoration: none; color: white;"
+                href="http://www.hs-karlsruhe.de/en/"> Home </a> | <a
+            STYLE="text-decoration: none; color: white;"
+            href="http://www.hs-karlsruhe.de/en/io.html"> International
+                Office </a>| <a STYLE="text-decoration: none; color: white;"
+            href="http://www.hs-karlsruhe.de/sstm"> SSTM </a>| <a
+            STYLE="text-decoration: none; color: white;"
+            href="http://www.hs-karlsruhe.de/geomatics"> GM</a>| <a
+            STYLE="text-decoration: none; color: white;"
+            href="http://www.hs-karlsruhe.de/en/footer-navigation/legal-notice.html">
+				Legal Notice </a> |
+
+            </div>
+            <div class="infoText"><small>Documents only are accepted in pdf format.
+                <ul>
+                    <li>Please upload only one pdf file for each line. </li>
+                    <li>If you have more than one page (e.g. transcript pdfs), first create one pdf file that contains all transcript pages. </li>
+                    <li>For additional documents click the button "Additional Documents"</li>
+                    <li>Best do the upload line by line.</li>
+                </ul>
+            </small>
+            </div>
+
+        </div>
+
+        <%
+        HttpSession session1 = request.getSession();
+        String bemlang2 = (String) session1.getAttribute("bemlang");
+        String bemlang=(String)request.getParameter("bemlang");
+        System.out.println("DocUploads: bemlangs session, request: "+bemlang2+" - "+bemlang);
+        if (bemlang == null && response !=null ) {	// New location to be redirected
+        String site = new String("ErrorMessageBewListe.jsp");
+        response.sendRedirect( site);
+        return;   //otherweise it will execute the code below
+        }
+
+        StudentDataIo io=new StudentDataIo();
+        StudentData data = io.ReadData(bemlang);
+        if (data == null && response !=null ) {	// New location to be redirected
+        String site = new String("ErrorMessageBewListe.jsp");
+        response.sendRedirect( site);
+        return;   //otherweise it will execute the code below
+        }
+
+
+        %>
+        <div class="tableFiles" id="allreqFiles">
+            <h3>Application Number: <%=data.getBemlang()%></h3>
+            <form  id="" action="UploadFile" method="post" enctype="multipart/form-data" onSubmit="return checkFile1();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input id="was" type="hidden" name="was" value="1" readonly></div>
+                <div>High School Certificate *</div>
+                <div>	<span id="fileLabel1"> </span><br></div>
+                <div><input id ="file1" type="file" name="file"  onchange="return checkFile1();" size ="5"/></div>
+                <div ><button type="submit" class="subButton" name="HSC" onclick="return checkFile1();" onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=hzb'">show</button> </div>
+                <div> <span id="info"><%=io.getReqDocs_Defined(data.getBemlang(), 1)%></span></div>
+                    <!-- <div><button type="button" id=<%=data.getBemlang() %> value ="Check" onclick ="SeeDoc(this);" >Check</button></div> -->
+            </form>
+
+            <form  id="" action="UploadFile" method="post" enctype="multipart/form-data" onSubmit="return checkFile2();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input id="was" type="hidden" name="was" value="2" readonly></div>
+                <div >Bachelor Certificate *</div>
+                <div > <span id="fileLabel2"> </span><br></div>
+                <div>  <input id ="file2" type="file" name="file"  onchange="return checkFile2();" size ="5"/></div>
+                <div ><button type="submit" class="subButton" name="BC" onclick="return checkFile2();" onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=bach'">show</button> </div>
+                <div><span id="info"><%=io.getReqDocs_Defined(data.getBemlang(),2) %></span> </div>
+            </form>
+
+
+            <form  id="" action="UploadFile" method="post" enctype="multipart/form-data" onSubmit ="return checkFile3();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input id="was" type="hidden" name="was" value="3" readonly></div>
+                <div>Bachelor Transcript *</div>
+                <div> <span id="fileLabel3"> </span><br></div>
+                <div> <input id ="file3" type="file" name="file" onchange="return checkFile3();" size ="5"/></div>
+                <div><button type="submit" class="subButton" name="BT" onclick="return checkFile3();" onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=transcript'">show</button> </div>
+                <div><span id="info"><%=io.getReqDocs_Defined(data.getBemlang(),3)%></span></div>
+            </form>
+
+
+            <form  id="" action="UploadFile" method="post" enctype="multipart/form-data" onSubmit ="return checkFile4();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input type="hidden" name="was" value="4" readonly></div>
+                <div>English language certificate *</div>
+                <div> <span id="fileLabel4"> </span><br></div>
+                <div> <input id="file4" type="file" name="file" onchange="return checkFile4();" size ="5"/></div>
+                <div><button type="submit"class="subButton" name="Englisch" onclick="return checkFile4();"  onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=engl'">show</button> </div>
+                <div><span id="info"><%=io.getReqDocs_Defined(data.getBemlang(),4)%></span></div>
+            </form>
+
+            <form  id="" action="UploadFile" method="post" enctype="multipart/form-data" onSubmit="return  checkFile5();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input type="hidden" name="was" value="5" readonly></div>
+                <div>Curriculum vitae *</div>
+                <div> <span id="fileLabel5"> </span><br></div>
+                <div > <input id="file5" type="file"  name="file" onchange="return checkFile5();" size ="5"/></div>
+                <div><button type="submit" class="subButton" name="CV"  onclick="return checkFile5();" onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=cv'">show</button> </div>
+                <div><span id="info"><%=io.getReqDocs_Defined(data.getBemlang(),5) %></span></div>
+            </form>
+
+            <form  id="" action="UploadFile" method="post" enctype="multipart/form-data" onSubmit="return  checkFile6();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input type="hidden" name="was" value="6" readonly></div>
+                <div>Motivation Letter *</div>
+                <div> <span id="fileLabel6"> </span><br></div>
+                <div> <input id="file6" type="file"  name="file"  onchange="return checkFile6();" size ="5"/></div>
+                <div ><button type="submit" class="subButton" name="CV"  onclick="return checkFile6();" onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=motivletter'">show</button> </div>
+                <div><span id="info"><%=io.getReqDocs_Defined(data.getBemlang(),6)%></span></div>
+            </form>
+
+            <form  id=""  action="UploadFile" method="post" enctype="multipart/form-data" onSubmit="return  checkFile7();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input type="hidden" name="was" value="7" readonly></div>
+                <div>Recommendation Letter 1 *</div>
+                <div> <span id="fileLabel7"> </span></div>
+                <div> <input id="file7" type="file" name ="file" onchange="return checkFile7();" size ="5" /></div>
+                <div><button type="submit" class="subButton" name="Letter1" onclick="return  checkFile7();" onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=rec1'">show</button> </div>
+                <div><span id="info"><%=io.getReqDocs_Defined(data.getBemlang(),7)%></span></div>
+            </form>
+
+            <form  id="" action="UploadFile" method="post" enctype="multipart/form-data" onSubmit="return  checkFile8();">
+                <div class="h-col"><input type="hidden" name="bemlang" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input type="hidden" name="was" value="8" readonly></div>
+                <div>Recommendation Letter 2 *</div>
+                <div><span id="fileLabel8"> </span></div>
+                <div><input id="file8" type="file" name ="file" onchange="return checkFile8();" size ="5" /></div>
+                <div><button type="submit" class="subButton" name="Letter2"  onclick="return checkFile8();" onblur="refresh();">Upload</button></div>
+                <div><button type="reset" onclick="location.href='GetDoc?bemlang=<%=data.getBemlang()%>&doc=rec2'">show</button> </div>
+                <div><span id="info"><%=io.getReqDocs_Defined(data.getBemlang(),8)%></span></div>
+            </form>
+            <%
+            String bem=data.getBemlang();
+            List docs_extra = io.getDocs_Extra(bem);
+            Iterator  it = docs_extra.iterator();
+            int i=0;
+            while (it.hasNext()){
+            StudentData DocExtra=(StudentData) it.next();
+            i++;
+
+            %>
+            <form id="" action="UploadFile" method="post" enctype="multipart/form-data">
+                <div class="h-col"><input type="hidden" name="bemlang2" value="<%=data.getBemlang()%>" readonly></div>
+                <div class="h-col"><input type="hidden" name="delwas" value="<%=i%>"></div>
+                <div>Document Name: </div>
+                <div><input type="text" name="<%=doc_extra+i %>" value="<%=DocExtra.getBezeichnung()%>" readonly></div>
+                <div><button type="reset" onclick="location.href='GetDoce?bemlang=<%=data.getBemlang()%>&doc=<%=DocExtra.getBezeichnung()%>'">show</button> </div>
+                <div><button type="submit"  >Remove</button></div>
+            </form>
+            <%} %>
+            <p class="info1">Click the "Additional Document" button for each document you want to add.
+            </p>
+            <div ><input id="bemlang1" type ="hidden" name="bemlang1" value="<%=data.getBemlang()%>" readonly> </div>
+            <div class="info1"><button class="addDocbutton" onclick="adddiv();">Additional Document</button> </div>
+
+        </div>
+        <table class="clTable">
+            <tr>
+                <td class="close" colspan="4"> </td>
+            </tr>
+            <tr> <td > <input type="hidden"   readonly/> <p class="info1">Please do not forget to close (for security reasons) this window after you completed all uploads.</p></td></tr>
+            <tr class="footer"> </tr>
+        </table>
+
+
+
+
+    </body>
+
+</html>

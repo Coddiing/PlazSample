@@ -1,0 +1,9 @@
+@(user: String)(implicit request: RequestHeader, flash: Flash)
+
+@main(s"Hello $user") {
+
+    <h1>You are already logged in @user!</h1>
+    <h1><p>Would you like to go back to the main page? <a href="@routes.UsersController.index()">Main Page!</a></p> </h1>
+
+    <p><a href="@routes.UsersController.logout()">Log out!</a></p>
+}

@@ -1,0 +1,179 @@
+@CHARSET "ISO-8859-1";
+.logofield {
+	position: relative;
+	top: 0;
+	overflow: initial;
+	margin-left: auto;
+	margin-right: auto;
+	height: 120px;
+	width: 900px;
+	background-color: #ffffff;
+	border-spacing:5px;
+}
+
+.h1 {
+	position: absolute;
+	top: 45px;
+	left: 350px;
+	color: red;
+}
+#info{
+	color:red;
+}
+
+.head {
+	border: 0 solid black;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 900px;
+	height: 150px;
+	background-color: #e3e3e3;
+}
+
+.headerline1 {
+	display: inline-block;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 890px;
+	height: 40px;
+	background-image: url('beckgroundpic.png');
+	background-repeat: repeat-x;
+	text-align: bottom;
+	vertical-align: bottom;
+	line-height: 50px;
+	font-size: 15px;
+	color: white;
+	text-decoration: #fffFFF;
+	padding-left: 10px;
+	padding-bottom: 0;
+}
+
+.infoText {
+	position: relative;
+	top: 3px;
+	left: 10px;
+}
+
+
+.tableFiles{
+  display:table;
+  top:200px;
+  margin-left: auto;
+  margin-right: auto;
+  width:890px;
+  background-color:#f1f1c1;
+  border:1px solid  #ffffff;
+  padding: 5px;
+}
+.tableFiles>* {
+  display:table-row;
+  width:auto;
+  clear:both;
+  padding:5px;
+
+ }
+.tableFiles>*>*{
+  float:left;/*fix for  buggy browsers*/
+  display:table-column;
+  width:150px;
+  padding: 5px;
+  background-color:#f3f3c3;
+
+ }
+ .h-col{
+  float:left;/*fix for  buggy browsers*/
+  display:table-column;
+  width:10px;
+  padding: 5px;
+  background-color:#f3f3c3;
+ }
+ #file1,#file2,#file3,#file4,#file5,#file6,#file7,#file8{
+
+  width:150px;
+
+  background-color:#f3f3c3;
+
+ }
+ .info1{
+ 	position:relative;
+ 	left:40px;
+ }
+.addDocbutton{
+    background-color: #CCCC66;
+	border-radius: 5px;
+	padding: 5px;
+}
+.clTable{
+  margin-left: auto;
+  margin-right: auto;
+  width:900px;
+
+  background-color:#f1f1c1;
+}
+.clTabel.tr{
+	padding:10px;
+}
+.clTable.td{
+	padding:5px;
+}
+
+.close{
+    position:relative;
+    bottom:5px;
+    left:790px;
+}
+.tableFiles.info1{
+	display:table-column;
+	width:20px;
+}
+.divAdd{
+	position:relative;
+    left:30px;
+    background-color:#f3f3c3;
+
+}
+
+.textPlaceholder{
+	position:relative;
+    left:30px;
+
+}
+.extrafile{
+	position:relative;
+    left:30px;
+
+}
+.extraUpButton{
+	position:relative;
+    left:30px;
+
+}
+.Labeltxt,.ExtraLabel{
+	position:relative;
+    left:30px;
+
+}
+
+.footer {
+	display: inline-block;
+	position: relative; /* absolute; or position:fixed for scrolling */;
+	bottom: 0;
+	background-image: url('footeimg.jpg');
+	background-repeat: repeat-x;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: #FfffFF;
+	overflow: hidden;
+	clear: both;
+	text-align: left;
+	padding-left: 15px;
+	padding-bottom: 2px;
+	vertical-align: bottom;
+	font-size: 13px;
+	font-weight: bold;
+	color: #ffffff;
+	height: 20px;
+	width: 885px;
+}

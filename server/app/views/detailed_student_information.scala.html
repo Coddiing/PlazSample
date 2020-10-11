@@ -1,0 +1,400 @@
+@( userName: String, lastLog: String )(implicit request: RequestHeader, flash: Flash)
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="STZ SensIn'">
+        <meta name="copyright" content="STZ SensIn'">
+        <meta name="email" content="leizesensin.eu">
+        <title> International Master Application HSKA</title>
+
+        <link   rel="icon"  type="image/x-icon"   href="favicon.ico">
+        <script  src="DetailsInfoFunctions.js" type="text/javascript"></script>
+        <link   href="DetailsInfoStyle.css" rel="stylesheet" type="text/css" >
+
+        <script src="jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <script  src="dhtmlxcalendar.js" type="text/javascript"></script>
+        <link  href="dhtmlxcalendar.css" rel="stylesheet" type="text/css" >
+
+        <script type="text/javascript">
+/*
+   function doOnLoad() {
+   	    var myCalendar;
+  		myCalendar = new dhtmlXCalendarObject(
+  				["gebdat","bachstart","bachend","brdstart","brdend"]);
+  		myCalendar.hideTime();
+  	}
+
+
+
+   */
+window.onload=function() {
+
+    //function1.apply(this, arguments);
+    //var myCalendar;
+    //myCalendar = new dhtmlXCalendarObject(
+    //      ["gebdat","bachstart","bachend","brdstart","brdend"]);
+    //myCalendar.hideTime();
+
+    // window.addEventListener('load', function1);
+
+}
+</script>
+
+    </head>
+    <%  String bemlang=(String)request.getParameter("bemlang");
+    if (bemlang == null && response !=null ) {	// New location to be redirected
+    String site = new String("ErrorMessageBewListe.jsp");
+    response.sendRedirect( site);
+    return;   //otherweise it will execute the code below
+    }
+    StudentDataIo getData =new StudentDataIo();
+    StudentData data= getData.ReadData(bemlang);
+    byte [] img =getData.getPhoto(bemlang);
+    String b64=null;
+    if (img!=null){
+    b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(img);
+    }
+
+
+    %>
+
+    <body class="bodyform"  >
+
+        <div class="logofield">
+
+            <img class="logo" src= "hska_logo_RGB_small.jpg" alt= "logo hska" >
+            <h3 class="h1">  International Master Application </h3>
+            <div class="head">
+                <a STYLE="text-decoration:none;color:white;" href="http://www.hs-karlsruhe.de/"  >  Home  </a> |
+                <a STYLE="text-decoration:none;color:white;" href="http://www.hs-karlsruhe.de/en/io.html"> International Office </a>|
+            </div>
+        </div>
+        <div id="dform">
+            <form  id= "form"    method="post" action="DetailsStudentInfoServlet"   enctype="multipart/form-data"  autocomplete="on"  onSubmit="return validateForm();">
+                <div class="hauptField"> <legend> <h3> <center> Student Information From the Data Base </center> </h3></legend>
+
+                    <span id="firstForm" style = "display:block;">
+
+
+                            <!-- for the bemlang given manually ......
+                  <tr class="trextra"><td colspan="2" align="right">Application Number:*  </td>
+                  <td colspan="2"> <input type="text" name="bemlangextra"  size ="15" placeholder="last three digits" required/></td> </tr>
+                  -->
+
+                            <!-- table1 -->
+                        <table class="table1" >
+                            <tr><td colspan="2" >
+                                <table class="tablehelp">
+                                    <tr>
+                                        <td class="td1" colspan="2"> Application for admission:*</td>
+                                        <td><span id="errorStg" style="visibility:hidden;">*Please Select your Application.</span><br>
+                                            <div class ="st1" id ="stg1">  <select class= "selectinput" name="stg" id="stg" onchange="javascript:validAppJahr();"  >
+                                                <option value ="-">Select your Application for </option>
+                                                <option  value= "STM"  > Summer semester (STM only)  </option>
+                                                <option  value= "GM"  > Winter semester ( GM only ) </option>
+                                                </select> </div></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td class="td1">Year*</td><td></td>
+                                        <td><span id="errorjahre" style="visibility:hidden;">*Year of application!! .</span><br>
+                                            <select name = "jahre"  id="jahre" class= "selectinput" onchange="return appjahr();"  >
+                                            <option value="-"> Select the Year:</option>
+                                            <option value="<%= data.checkDeadLineDate1() %>" >  <%= data.checkDeadLineDate1() %>  </option>
+
+                                            <option value="<%= data.checkDeadLineDate2() %>"  > <%= data.checkDeadLineDate2() %>  </option>
+
+                                            <option value="<%= data.checkDeadLineDate3() %>" > <%= data.checkDeadLineDate3() %>  </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="td1"> Gender* </td><td></td>
+                                        <td><span id="errorSexMissing" style="visibility:hidden;">*Please Select your gender.</span><br>
+                                            <select id="sex" name ="geschl" form= "form" class= "selectinput"  onchange="return validGender()">
+                                                <option value ="-">Select your Gender</option>
+                                                <option  value = "M" >Male</option>
+                                                <option value = "W" >Female</option> </select></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="td1">Title: </td><td></td>
+                                        <td><span id="errorTitleMissing" style="visibility:hidden;">Title.</span><br>
+                                            <input class="text1" type="text" name ="anti" placeholder="Your academic Title" value="<%= data.getAnti() %>" maxlength="25" /> </td>
+                                    </tr>
+                                </table>
+                            </td><td></td>
+
+                                    <!-- imagetable -->
+                                <td colspan="2">
+                                    <img src="data:image/jpg;base64, <%=b64%>" alt="Picture not stored."  height="300" width="200" align="middle">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td1">Nationality:* </td>
+                                <td > <span id="errorNationality" style="visibility:hidden;">*Nationality is required!.</span> <br>
+                                    <%
+                                    state state = new state();
+                                    ResultSet res= state.getStates();
+                                    %>
+                                    <select  id="nationality"  name="staat" class="selectinput"  onchange="return ValidNationality();">
+                                        <option  value="null"> Select your Country </option>
+                                        <%
+                                        while (res.next()){
+                                        { %>
+
+                                        <option value="<%=res.getString(1)%>" ><%=res.getString(2)%></option>
+
+                                        <%  }}     %>
+                                    </select>    </td>
+
+                                <td>Portrait Photo (&lt;1 MB): </td>
+                                <td><span id="photoLabel"> </span><br>
+                                    <input type="text" id="fileName"  class="file_input_textbox" readonly="readonly" value="<%=getData.getPhotoDefined(data.getBemlang())%>">
+                                    <div class="file_input_div">
+                                        <input type="button"  value="Search" class="file_input_button" />
+                                        <input type="file" name ="photo" class="file_input_hidden" onchange="javascript: this.form.fileName.value=((this.value.replace(/^.*[\/\\]/g, '')).split('..',2));" onselect="return checkPhoto(this);"  onblur="return checkPhoto(this);" /></div></td>
+                            </tr>
+                            <tr>
+                                <td class="td1">Surname:* </td>
+                                <td><span id="errorFamilyNameMissing" style="visibility:hidden;">*Please provide your family name.</span><br>
+                                    <input class="text1" type="text"  id="familyname"  name="nachname" value="<%= data.getNachname()%>"  maxlength="35" placeholder="Your Surname" onfocus=" required();" onblur=" ValidFamilyName();"/>  </td>
+
+                                <td class="td1">Given Name:* </td>
+                                <td><span id="errorFirstNameMissing" style="visibility:hidden;">*Please provide your first name.</span><br>
+                                    <input type="text"   class="text1"  id="firstname" name="vorname" value="<%= data.getVorname() %>" maxlength="30" placeholder="Your Name"  onblur="ValidFName();" />
+                                    <span id="errorFirstNameToLang" style="visibility:hidden;">*Your first name is to long.</span><br></td>
+                        <tr>
+                            <td class="td1"> Date of Birth:*  </td>
+                            <td><span id="errorBirth" style="visibility:hidden;">*Please provide your birthday.</span><br>
+                                <input type="text" class="text1" id ="gebdat" name ="gebdat"
+                                value="<%= data.ignoreNull(data.getGebdat()) %>"  placeholder="1990-01-30" onkeyup="doOnLoad();"  onmousedown="doOnLoad();" onblur="validGDate();"  /></td>
+                            <td class="td1"> Place of birth:*</td>
+                            <td><span id="errorBirthPlace" style="visibility:hidden;">*Birthday place is required.</span><br>
+                                <input type ="text" class="text1"  name= "gebort" id="gebort"  value="<%= data.getGebort() %>" maxlength="25" placeholder="Place,Country" title="Please state City and Country" onfocus="revealTitleHelp();" onblur="ValidBirthPlace();" /></td>
+                        </tr>
+                            <tr>
+
+              </tr>
+                            <tr  class="adress">
+                                <td class="td1"> Additional information:</td>
+                                <td><span id="errorAddInfo" style="visibility:hidden;">*Additional Info..</span><br>
+                                    <input type= "text"  class="text1"  name= "pozusatz" size="30" value ="<%= data.getPozusatz() %>" placeholder ="e.g C/O" title ="In case you live/use sombodys else hause/address" onfocus="revealTitleHelp();" /> </td>
+                                <td class="td1"> Street/House No.:*</td>
+                                <td><span id="errorStreet" style="visibility:hidden;">*Please provide the name of the street.</span><br>
+                                    <input type= "text" class="text1"  id="postrasse" name= "postrasse"  maxlength="30" value ="<%= data.getPostrasse() %>" size="30" placeholder="Street/House Name" title ="Please state correctly the name of the street(<25char)" onfocus="revealTitleHelp();" onblur="return  ValidStreet();" /></td></tr>
+
+                            <tr class="adress">
+                                <td class="td1">Postal/zip code:*</td>
+                                <td><span id="errorPoCode" style="visibility:hidden;">*Please provide the Postal code</span><br>
+                                    <input type ="text" id="pocode" class="text1"  name ="poplz" value="<%= data.getPoplz() %>"  maxlength="10" placeholder="enter ZIP code" title="Postal code of the place you live/recive post " onfocus="revealTitleHelp();"size= "30"  onblur="return ValidPoCode();"  /> </td>
+
+                                <td class="td1">Town/city:*</td>
+                                <td><span id="errortown" style="visibility:hidden;">*City where you live!!</span><br>
+                                    <input class="text1" type="text" name ="poort" id="town"  maxlength="10" value="<%= data.getPoort() %>"  placeholder="Name of the City" title ="Town Place or City !" onfocus="revealTitleHelp();"  onblur="return  ValidCity();" /> </td>
+                            </tr>
+                            <tr class="adress">
+                                <td class="td1"> Country:*</td>
+                                <td > <span id="errorcountry" style="visibility:hidden;">*Country where you live!!</span><br>
+
+                                    <%
+                                    try{
+                                    state s = new state();
+                                    ResultSet rs= s.getStates();
+                                    %>
+                                    <select name="pokfz" id="country" class="selectinput"  onchange="return ValidCountry();">
+                                        <option  value="-"> Country where you live  </option>
+
+                                        <%
+                                        while (rs.next()){
+                                        {
+                                        %>
+
+                                        <option value="<%=rs.getString(1)%>" ><%=rs.getString(2)%></option>
+
+                                        <%  }}     %>
+                                    </select>
+
+                                    <% }
+                                    catch(Exception e){}
+                                    %> </td>
+
+                                <td class="td1"> </td> <td></td>
+                            </tr>
+                            <tr>
+                                <td>E-mail: </td>
+                                <td> <span id="erroremail" style="visibility:hidden;">*Invalid Email address!!</span><br>
+
+                                    <input class="text1"  type= "text"  name ="email" id="email"   value ="<%=data.getEmail() %>"  onblur="return ValidEmail();" onfocus="return ValidEmail();"/>
+
+                                </td>
+                                <td> Phone Number: </td>
+                                <td> <input  type ="text" class="text1"  name ="potel" maxlength="50" value="<%= data.getPotel() %>"  placeholder="+code/phone.no" title ="Your actual phone number!" onfocus="revealTitleHelp();"/> </td>
+                            </tr>
+
+                            <tr>
+                                <td>Name of the institution:*<br> where you studied: </td>
+                                <td><span id="errorinstitutename" style="visibility:hidden;">*Name Of university is required!</span><br>
+                                    <input class="text1" id="institname" type ="text" name ="hochschulname"  value="<%= data.getHochschulname() %>" maxlength="160" placeholder="University Name"  onblur="return  ValidUni();" /></td>
+                                <td>City  where the institution is:*</td>
+                                <td><span id="errorinstituteort" style="visibility:hidden;">*University place is required!</span><br>
+                                    <input class="text1" id="institort" type ="text"  name="hochschulort" value="<%= data.ignoreNull(data.getHochschulort())%>" maxlength="255" placeholder="Place/City"  onblur="return  ValidUniOrt();" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Course title:*</td>
+                                <td><span id="errorCoursTitle" style="visibility:hidden;">*Course title is requierd</span><br>
+                                    <input class="text1" id="bachTitle" type ="text" name ="studiengangname"  value="<%= data.getStudiengangname() %>"  maxlength="255" placeholder="Name of the Course"   onblur="return  ValidBach();" /></td>
+                                <td>From: <input type="text" class="dateformat" id="bachstart" size="15" name= "bachstart" placeholder="year-month-day" value="<%= data.getBachstartdateS() %>" onmousedown="doOnLoad();" /></td>
+                                <td>To: <input type="text" class="dateformat" id="bachend" size="15" name="bachend" placeholder="year-month-day" value="<%= data.getBachenddateS() %>" onmousedown="doOnLoad();" /></td>
+                            </tr>
+                            <tr>
+                                <td>Degree/Diploma awarded? </td>
+                                <td> <label for="radio1" >Yes</label>
+                                    <input type="radio" id="radio1" name="abschluss" value ="J"  /> <br> </td> <!-- to be changed after the dates of this year are entered -->
+                                <td><label for="radio3">Degree not yet awarded but already<br> have a complete list of marks?</label>
+                                    <input type="radio" id="radio3" name="abschluss" value ="C"  /></td>
+                                <td><label for="radio4"> To be completed at a later date</label>
+                                    <input type="radio" id="radio4" name="abschluss" value ="M" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Bachelor average overall mark:</td>
+                                <td><input type="text" name ="average"  maxlength="10" value="<%= data.getAverage() %>"  size="10"/></td>
+                                <td>Best mark in your system: <input type="text" name="bestmark" maxlength="10"  value="<%= data.getBestmark() %>" size="10" /></td>
+                                <td>Pass mark in your system: <input type="text" name="passmark"  maxlength="10"  value="<%= data.getPassmark() %>" size="10" /></td>
+                            </tr>
+
+
+
+
+
+                            <tr id="radios"> <!-- for the final version ????????
+                     <td >Have you ever been enrolled at<br> a German Institution?</td>
+                     <td ><input type="radio" id="r1" name="berufab" value ="J"  onclick="academytable(this);" />Yes
+                         <input type ="radio" id="r2" name="berufab" value="N" size ="5" checked  onclick="academytable(this);"/>No<br></td>
+           -->
+
+
+                                <td id=radios2 colspan="2">Have you ever been enrolled at an <br>institution of higher education in Germany?</td>
+                                <td>  <input type="radio" id="rad0" name="dolater" value="J"   onclick="onofftab2(this);" /> Yes
+                                    <input type="radio" id="rad1"  name="dolater" value="N"    onclick="onofftab2(this);" />No <br> </td>  <!-- onload="onofftab2(this);"  onclick="onofftab2(this);" -->
+                            </tr>
+
+
+                            <tr>
+                                    <!-- for the final version
+
+      <td  colspan="2" class="academytable" >
+
+      <table id="academytable" style='display:none'  border="0" class="academytable" >
+
+
+        <tr   id="academy1">
+            <td style='width:50%' > Name of the academy:</td><td> <input type ="text" size ="35" placeholder=" Enter the name of the institution."/> </td></tr>
+          <tr id="academy_1"  >  <td >Place:</td>
+          <td style='width:50%'>
+                <input type ="text" size ="35" placeholder="Enter the name of the Place."/>  </td>
+        </tr >
+        <tr id="academy2" >
+            <td style='width:50%'>Subject area(s): </td>
+            <td style='width:50%'> <input type ="text" size ="35" placeholder ="Enter the of the Subject."> </td></tr>
+          <tr id="academy_2" >  <td style='width:50%'>Degree/Diploma awarded ? </td>
+          <td style='width:50%'>
+                <label for="r3" style ="width:5px;">Yes</label>
+                <input type="radio" id="r3" name="berufakademi" value ="J" />
+                <label for="r4" style="width:10px;"> No</label>
+                <input type="radio" id="r4" name="berufakademi" value ="N"/> <br></td>
+         </tr>
+         <tr id="academy3" >
+            <td style='width:50%' >From:  <input type ="text" size ="15" placeholder="year.month.day"/></td>
+            <td style='width:50%'>To: <input type ="text" size ="15" placeholder ="year.month.day"/></td>
+           </tr>
+
+        </table>
+        </td>
+          -->
+
+                                <td  colspan="2"  class="instituttable" >
+
+                                    <table id ="instituttable" style='display:none'  class="instituttable" >
+                                        <tr id="tabrow1">
+                                            <td style='width:50%'>Name Of the Institution:</td>
+                                            <td >
+                        <%
+                                                try{
+                                                hochschuleBRD brd = new hochschuleBRD();
+                                                ResultSet rs1= brd.getHsBRD();
+                                                %>
+                                                <select name="erhskfz" >
+                                                    <option  value ="sel" > Universität/ Hochschule  </option>
+                                                    <%
+                                                    while (rs1.next()){
+                                                    {
+
+                                                    %>
+
+                                                    <option value="<%= rs1.getString(2)%>"  > <%=rs1.getString(1)%></option>
+
+                                                    <%  }}     %>
+                                                </select>
+
+                                                <% }
+                                                catch(Exception e){}
+                                                %> </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>
+        </td>
+                                        </tr>
+                                        <tr id="tabrow2">
+                                            <td>Course title:</td>
+                                            <td> <input  type ="text" class="text1"   name="BRD_course"  maxlength="255"  placeholder="Enter the title." value="<%= data.getBrdcourse()%>"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Degree/Diploma awarded ?  </td>
+                                            <td>
+                                                <label for="rb1" style ="width:5px;">Yes</label>
+                                                <input type="radio" id="rb1" name="BRD_diploma" value ="J" />
+                                                <label for="rb2" style="width:10px;"> No</label>
+                                                <input type="radio" id="rb2" size ="5" name="BRD_diploma" value ="N" /> <br></td>
+
+                                        </tr>
+                                        <tr id=tabrow3>
+                                            <td>From: <input type ="text" class="dateformat"  size ="15" id="brdstart"  name="brdstart" placeholder="year-month-day" value="<%= data.getBrdstartdateS() %>"  onmousedown="doOnLoad();"/></td>
+                                            <td>To: <input type ="text" class="dateformat" size ="15" id="brdend" name="brdend" placeholder ="year-month-day"  value="<%= data.getBrdenddateS() %>" onmousedown="doOnLoad();"/></td> </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr class="form3">
+                                <td><input type="hidden" value = <%=bemlang %> name = "bemlang"></td>
+                                    <!--
+                 <td> <button  type="button"  class="button1"  onclick="goBack();">Go Back</button></td>
+                  -->
+                                <td colspan ="4" align="right"> <input  type="submit"  class="button1"  value="Save" id="sub"  onclick="return validateForm();" >
+                                </td>
+                            </tr>
+                            <tr> </tr>
+
+                            <tfoot><tr><td>  </td></tr></tfoot>
+                        </table>
+                    </span>
+
+                    <footer class="footer">
+                        <a href="http://www.hs-karlsruhe.de/en/footer-navigation/legal-notice.html" style="color:white" >Legal Notice </a> |
+                    </footer>
+                </div>
+
+            </form>
+        </div>
+
+
+
+
+    </body>
+</html>

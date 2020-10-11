@@ -1,0 +1,476 @@
+bodyform {
+	position: relative;
+	height: 100%;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+}
+
+a {
+	text-decoration: none;
+	color: #0000ff;;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:active {
+	color: #70DB93;
+}
+
+a:visited {
+
+}
+
+.text1 {
+	border-radius: 5px;
+	padding: 3px;
+	height: 20px;
+	width: 230px;
+}
+
+.selectinput {
+	width: 240px;
+	border-radius: 5px;
+	padding: 3px
+}
+
+.trextra {
+	background-color: #CCCCFF;
+}
+
+#errorStg {
+	color: red;
+}
+
+#errorjahre {
+	color: red;
+}
+
+#errorSexMissing {
+	color: red;
+}
+
+#errorFamilyNameMissing {
+	color: red;
+}
+
+#errorFirstNameMissing {
+	color: red;
+}
+
+#errorBirth {
+	color: red;
+}
+
+#errorBirthPlace {
+	color: red;
+}
+
+#errorNationality {
+	color: red;
+}
+
+#errorStreet {
+	color: red;
+}
+
+#errorPoCode {
+	color: red;
+}
+
+#errortown {
+	color: red;
+}
+
+#errorcountry {
+	color: red;
+}
+
+#erroremail {
+	color: red;
+}
+
+#errorinstitutename {
+	color: red;
+}
+
+#errorinstituteort {
+	color: red;
+}
+
+#errorCoursTitle {
+	color: red;
+}
+#photoLabel{
+	color:red;
+}
+
+#messg {
+	color: red;
+	background-color: #E8FFBA;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.logofield {
+	position: relative;
+	top: 0;
+	overflow: initial;
+	margin-left: auto;
+	margin-right: auto;
+	height: 170px;
+	width: 1000px;
+	background-color: #ffffff;
+}
+
+.h1 {
+	position: absolute;
+	top: 45px;
+	left: 350px;
+	color: red;
+}
+
+.h2 {
+	position: absolute;
+	left: 350px;
+	top: 70px;
+	color: red;
+}
+
+.contactIO {
+	display: inline-block;
+	position: absolute;
+	top: 30px;
+	right: 0;
+	height: 30px;
+	width: 90px;
+	line-height: 3px;
+	text-align: right;
+	color: #000000;
+	background-color: #E8E8E8;
+}
+
+.logo {
+	position: relative;
+	left: 25px;
+	top: 20px;
+	height: 90px;
+	width: 220px;
+}
+
+.head {
+	border: 0 solid black;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+
+	width: 1000px;
+	height: 170px;
+	background-color: #e3e3e3;
+}
+
+.headerline1 {
+	display: inline-block;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 990px;
+	height: 40px;
+	background-image: url('beckgroundpic.png');
+	background-repeat: repeat-x;
+	text-align: bottom;
+	vertical-align: bottom;
+	line-height: 50px;
+	font-size: 15px;
+	color: white;
+	text-decoration: #fffFFF;
+	padding-left: 10px;
+	padding-bottom: 0;
+}
+
+.courstext {
+	position: absolute;
+	top: 25px;
+	left: 10px;
+}
+.privacytext {
+	position: absolute;
+	top: 150px;
+	left: 10px;
+}
+
+.courstext1 {
+	position: relative;
+	top: 5px;
+	left: 15px;
+}
+.coursText{
+	position: relative;
+	top: 5px;
+	left: 15px;
+}
+.hiddentext1 {
+	overflow: auto;
+	position: relative;
+	left: 10px;
+	width: 380px;
+	background-color: #f2f2f2;
+}
+
+.hiddentext2 {
+	overflow: hidden;
+	position: relative;
+	left: 10px;
+	width: 380px;
+	background-color: #f2f2f2;
+}
+
+.imptext {
+	position: absolute;
+	top: 23px;
+	left: 840px;
+	overflow: auto;
+}
+
+.hiddenimptext {
+	overflow: auto;
+	position: absolute;
+	left: 480px;
+	top: 60px;
+	width: 480px;
+	height: 110px;
+	background-color: #f2f2f2;
+}
+
+.field2 {
+	position: relative;
+	overflow: hidden;
+	margin-left: auto;
+	margin-right: auto;
+	bottom: 5px;
+	width: 1000px;
+}
+
+.table1 {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 2px;
+	bottom: 20px;
+	table-layout: auto;
+	background-color: #f1f1c1;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+tr {
+	padding: 15px;
+}
+
+td {
+	padding: 15px;
+}
+
+td.td1 {
+	width: 20%;
+	padding: 15px;
+}
+
+tr.adress {
+	background-color: #F9F9C9;
+}
+
+.secondform {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	bottom: 20px;
+	table-layout: auto;
+	background-color: #f1f1c1;
+	border-collapse: collapse;
+	width: 1000px;
+	padding: 25px;
+}
+
+.secondform td {
+	padding: 15px;
+}
+
+.secondform tr {
+	padding: 15px;
+}
+
+table.seconform td td {
+	border-collapse: collapse;
+	width: 20%;
+}
+
+.button {
+	background-color: #CCCC66;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.button1 {
+	background-color: #CCCC66;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.academytable {
+	table-layout: fixed;
+	border-spacing: 0;
+	background-color: #F9F9C9;
+	border-collapse: collapse;
+}
+
+.academytable td {
+	padding: 5px;
+}
+
+.academytable tr {
+	padding: 5px;
+}
+
+.instituttable {
+	table-layout: fixed;
+	background-color: #f1f1c1;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.instituttable td {
+	padding: 5px;
+	width: 50%;
+}
+
+.instituttable tr {
+	padding: 5px;
+}
+
+table instituttable td td {
+	padding: 5px;
+}
+
+table instituttable tr tr {
+	padding: 5px;
+}
+
+input {
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px;
+}
+
+input.-placeholder {
+	color: red;
+}
+
+input.-placeholder {
+	color: red;
+}
+
+input:-webkit-input-placeholder {
+	color: #7a7a7a;
+}
+
+input:-moz-placeholder {
+	color: black;
+}
+
+inpute.file {
+	width: 237px;
+	border-radius: 7px;
+	padding: 4px
+}
+
+select {
+	width: 237px;
+	border-radius: 5px;
+	padding: 4px
+}
+
+.file_input_textbox {
+	width: 150px;
+	float: left
+}
+
+.file_input_div {
+	position: relative;
+	width: 90px;
+	height: 23px;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.file_input_button {
+	width: 90px;
+	position: absolute;
+	top: 0;
+	background-color: #c7dbf7;
+	color: black;
+	border-style: solid;
+}
+
+.file_input_hidden {
+	font-size: 45px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha('opacity=0');
+	-ms-filter: "alpha(opacity=0)";
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+}
+
+#formtwo {
+	width: 700px;
+	margin: 0 auto;
+	padding: 10px;
+	border-width: 5px solid;
+	beckround-color: #f1f1c1;
+}
+
+.error {
+	display: none;
+	margin-top: 10px;
+}
+
+.error_show {
+	color: red;
+	margin-top: 10px;
+}
+
+input.invalid, textarea.invalid {
+	border: 1px solid red;
+}
+
+input.valid, textarea.valid {
+	border: 1px solid green;
+}
+
+.footer {
+	display: inline-block;
+	position: fixed; /* absolute; or position:fixed for scrolling */;
+	bottom: 0;
+	background-image: url('footeimg.jpg');
+	background-repeat: repeat-x;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: #FfffFF;
+	overflow: hidden;
+	clear: both;
+	text-align: left;
+	padding-left: 15px;
+	padding-bottom: 2px;
+	vertical-align: bottom;
+	font-size: 13px;
+	font-weight: bold;
+	color: #ffffff;
+	height: 20px;
+	width: 985px;
+}

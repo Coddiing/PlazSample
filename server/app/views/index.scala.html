@@ -1,0 +1,22 @@
+@*
+* This template takes a single argument, a String containing a
+* message to display.
+*@
+@(username: String, lastSeen: String)(implicit request: RequestHeader, flash: Flash)
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main(s"Welcome $username") {
+
+    <!--
+    <h1>You are logged in @username! </h1>
+    <h1>Your Last Log in was: @lastSeen </h1>
+
+
+    <h1><p>Would you like to see a new page? <a href="@routes.UsersController.newPage()">New Page!</a></p> </h1>
+    <p><a href="@routes.UsersController.logout()">Log out!</a></p>
+    -->
+
+}

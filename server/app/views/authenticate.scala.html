@@ -1,0 +1,104 @@
+@()(implicit request: RequestHeader, flash: Flash)
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="STZ SensIn'">
+        <meta name="copyright" content="STZ SensIn'">
+        <meta name="email" content="leize">
+        <title>International Master Application HSKA - Authentication</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <script src="StmFunction.js" type="text/javascript"></script>
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/OnlineAppStyle.css")">
+
+    </head>
+    <body>
+
+        <div class="logofield">
+
+            <img class="logo"  src="hska_logo_RGB_small.jpg" alt="logo hska">
+            <h3 class="h1">International Master Application</h3>
+
+        </div>
+
+
+        <div class="head" border="0">
+
+            <div class="headerline1">
+
+                <a STYLE="text-decoration: none; color: white;"
+                href="https://www.hs-karlsruhe.de/en/"> Home </a> | <a
+            STYLE="text-decoration: none; color: white;"
+            href="https://www.hs-karlsruhe.de/en/io.html"> International
+                Office </a>| <a STYLE="text-decoration: none; color: white;"
+            href="https://www.hs-karlsruhe.de/sstm"> SSTM </a>| <a
+            STYLE="text-decoration: none; color: white;"
+            href="https://www.hs-karlsruhe.de/geomatics"> GM</a>| <a
+            STYLE="text-decoration: none; color: white;"
+            href="https://www.hs-karlsruhe.de/en/footer-navigation/legal-notice.html">
+                Legal Notice </a> |
+                <a
+                STYLE="text-decoration: none; color: white;"
+                href="data_privacy.html">
+                    Data Privacy </a> |
+
+            </div>
+            <div class="courstext">
+                <br /> Thank you for your interest in our international master's
+                degree programmes! <br /> <br /> <strong>If you have any
+                difficulties, suggestions or remarks, please feel free to send an
+                email to <a href="#">leize</a>
+            </strong> <br /> This is the first page. Here you enter the authentication
+                you received by email.
+            </div>
+
+        </div>
+        <div id="dform">
+            <form id="form" method="post" action="DoAuthenticate"
+            enctype="application/x-www-form-urlencoded" autocomplete="on"
+            onSubmit="return  validateAuthenticateForm();">
+                    <!-- 			enctype="multipart/form-data" autocomplete="on" -->
+                <div class="field2">
+                    <legend>
+                        <h3>
+                            <center>APPLICATION FOR ADMISSION TO A COURSE OF STUDY</center>
+                        </h3>
+                    </legend>
+
+                    <span id="firstForm" style="display: block;">
+                        <center>
+                            <table border="0" class="table1">
+
+                                <tr class="trextra">
+                                    <td align="right">Authentication Number:*</td>
+
+                                    <td><input type="text" name="authnumber" size="25"
+                                    placeholder=" sent by email to you " required /></td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                    </td>
+
+                                    <td><input class="button1" type="submit"
+                                    value="Please check" id="sub"
+                                    onclick="return  validateAuthenticateForm();"></td>
+                                </tr>
+
+                            </table>
+
+                        </center>
+                        <div class="footer"></div>
+                    </span>
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+
+    </body>
+</html>
